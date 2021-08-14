@@ -1,0 +1,33 @@
+.header
+  height: 60px
+  padding: 5px 10px
+  display: flex
+  align-items: center
+  justify-content: space-between
+  box-shadow: 0 2px 6px #ccc
+  margin-bottom: 20px
+  
+  &-nav
+    flex: 1
+    display: flex
+    justify-content: flex-end
+    list-style: none
+    align-items: center
+    
+    a
+      display: inline-block
+      min-width: 60px
+      text-align: center
+
+    a + a
+      margin-left: 10px
+
+  &-profile
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    overflow: hidden
+    
+    img
+      width: 100%
+      height: auto
