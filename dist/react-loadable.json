@@ -415,7 +415,7 @@
       "publicPath": "/server.js.map"
     }
   ],
-  "../store/types": [
+  "./types": [
     {
       "id": "./src/client/store/types.js",
       "name": "./src/client/store/types.js",

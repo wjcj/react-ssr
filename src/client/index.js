@@ -20,12 +20,14 @@ const Index = () => {
   );
 };
 
-// https://stackoverflow.com/questions/46865880/react-16-warning-expected-server-html-to-contain-a-matching-div-in-div-due
-const renderMethod = module.hot ? ReactDom.render : ReactDom.hydrate;
-
-window.main = () => {
-  Loadable.preloadReady().then(() => {
-    // ReactDOM.hydrate(<App/>, document.getElementById('app'));
-    renderMethod(<Index/>, document.getElementById('root'));
-  });
-};
+if (window.__isSSR) {
+  window.main = () => {
+    Loadable.preloadReady().then(() => {
+      // https://stackoverflow.com/questions/46865880/react-16-warning-expected-server-html-to-contain-a-matching-div-in-div-due
+      // const renderMethod = module.hot ? ReactDom.render : ReactDom.hydrate;
+      ReactDom.hydrate(<Index/>, document.getElementById('root'));
+    });
+  };
+} else {
+  ReactDom.render(<Index/>, document.getElementById('root'));
+}

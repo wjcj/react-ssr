@@ -40,14 +40,13 @@ app.use('/*', async (req, res) => {
         </StyleContext.Provider>
       </Provider>
     );
-    
-    console.log('modules====>', modules);
+
     const bundles = getBundles(stats, modules);
-    const contentDom = renderToString(jsx);
+    const content = renderToString(jsx);
     const helmet = Helmet.renderStatic();
 
     const html = renderHtml({
-      content: contentDom,
+      content,
       state: store.getState(),
       css,
       helmet,
@@ -59,7 +58,7 @@ app.use('/*', async (req, res) => {
       return;
     }
     if (context.notFound) {
-      res.status(400);
+      res.status(404);
     }
     res.send(html);
 
@@ -87,6 +86,7 @@ function renderHtml({ content, state, css, helmet, bundles }) {
       </head>
       <body>
         <div id="root">${content}</div>
+        <script>window.__isSSR = true</script>
         <textarea id="textarea-ssr-data" style="display: none">${JSON.stringify(state)}</textarea>
         <script src="/client.js"></script>
         ${bundles.map(bundle => `<script src="/${bundle.file}"></script>`).join('\n')}

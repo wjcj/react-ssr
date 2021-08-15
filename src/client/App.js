@@ -1,6 +1,6 @@
 import React from 'react';
-import { renderRoutes } from "react-router-config";
-import { Link } from "react-router-dom";
+import { renderRoutes } from 'react-router-config';
+import { Link } from 'react-router-dom';
 import Layout from './componments/layout';
 import Header from './componments/header';
 import Loading from './componments/loading';

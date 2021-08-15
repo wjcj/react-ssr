@@ -26,6 +26,6 @@ const serverConfig = {
       },
     ]
   },
-}
+};
 
 module.exports = merge(config, serverConfig);

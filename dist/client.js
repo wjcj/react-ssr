@@ -20234,17 +20234,19 @@ var Index = function Index() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
     store: store
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
-}; // https://stackoverflow.com/questions/46865880/react-16-warning-expected-server-html-to-contain-a-matching-div-in-div-due
-
-
-var renderMethod =  false ? undefined : react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.hydrate;
-
-window.main = function () {
-  react_loadable__WEBPACK_IMPORTED_MODULE_4___default.a.preloadReady().then(function () {
-    // ReactDOM.hydrate(<App/>, document.getElementById('app'));
-    renderMethod( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Index, null), document.getElementById('root'));
-  });
 };
+
+if (window.__isSSR) {
+  window.main = function () {
+    react_loadable__WEBPACK_IMPORTED_MODULE_4___default.a.preloadReady().then(function () {
+      // https://stackoverflow.com/questions/46865880/react-16-warning-expected-server-html-to-contain-a-matching-div-in-div-due
+      // const renderMethod = module.hot ? ReactDom.render : ReactDom.hydrate;
+      react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.hydrate( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Index, null), document.getElementById('root'));
+    });
+  };
+} else {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Index, null), document.getElementById('root'));
+}
 
 /***/ }),
 
